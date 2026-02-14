@@ -1,0 +1,50 @@
+{
+    "_doc": "Known API endpoint patterns for Indian timing platforms. Updated as we discover more.",
+    
+    "sportstimingsolutions.in": {
+        "notes": "Vue.js SPA. Results URL uses base64-encoded JSON in query param 'q'.",
+        "url_pattern": "sportstimingsolutions.in/results?q={base64_json}",
+        "base64_payload": {"e_name": "event name", "e_id": "numeric event ID"},
+        "known_api_patterns": [
+            "/api/events/{event_id}/results",
+            "/api/events/{event_id}/leaderboard",
+            "/api/events/{event_id}/races",
+            "/api/events/{event_id}/brackets"
+        ],
+        "data_fields": {
+            "participant": ["bibno", "first_name", "last_name", "full_name"],
+            "timing": ["finished_time", "gun_time", "chip_pace", "gun_pace"],
+            "ranking": ["bracket_rank", "bracket_name", "bracket_participants"],
+            "splits": ["interval_name", "chip_time", "gun_time", "chip_pace"],
+            "team": ["team_name", "team_time", "team_rank"]
+        },
+        "example_events": {
+            "TCS World 10K Bengaluru 2025": {
+                "event_id": 85951,
+                "url": "https://sportstimingsolutions.in/results?q=eyJlX25hbWUiOiJUQ1MgV29ybGQgMTBLIEJlbmdhbHVydSAyMDI1IiwiZV9pZCI6ODU5NTF9"
+            }
+        }
+    },
+
+    "mysamay.in": {
+        "notes": "React SPA. Results use UUID-based event IDs in URL path.",
+        "url_pattern": "mysamay.in/race/results/{uuid}",
+        "known_api_patterns": [
+            "/api/race/{uuid}/results",
+            "/api/event/{uuid}/info"
+        ],
+        "example_events": {
+            "Bengaluru 10K Challenge 2025": {
+                "uuid": "2f9d04d2-4750-4736-881b-dbc8227ce941",
+                "url": "https://mysamay.in/race/results/2f9d04d2-4750-4736-881b-dbc8227ce941"
+            }
+        }
+    },
+
+    "timingindia.com": {
+        "notes": "Older platform. May have server-rendered HTML tables.",
+        "url_pattern": "timingindia.com/results/{event_slug}",
+        "known_api_patterns": [],
+        "scraping_method": "dom_table"
+    }
+}
