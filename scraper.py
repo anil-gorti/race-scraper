@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Race Results Scraper Agent for Indian Endurance Sports
+Race Results Scraper Agent
 ======================================================
-Given a race name (e.g., "2025 Bengaluru 10K Challenge"), this agent:
+======================================================
+Given a race name (e.g., "2025 City Marathon"), this agent:
 1. Searches for the results URL
 2. Detects the timing platform
 3. Intercepts API calls to extract structured data
@@ -15,7 +16,7 @@ Supported platforms:
 - my.raceresult.com
 
 Usage:
-    python scraper.py "2025 Bengaluru 10K Challenge"
+        python scraper.py "2025 City Marathon"
     python scraper.py --url "https://mysamay.in/race/results/..."
 """
 
@@ -721,13 +722,13 @@ async def debug_page(url: str):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Scrape race results from Indian timing platforms",
+                description="Scrape race results from any SPA-based timing platform",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python scraper.py "2025 Bengaluru 10K Challenge"
+      python scraper.py "2025 City Marathon"
   python scraper.py --url "https://mysamay.in/race/results/2f9d04d2-..."
-  python scraper.py "TCS World 10K 2025" --output results.csv
+      python scraper.py "City Marathon 2025" --output results.csv
   python scraper.py --url "https://sportstimingsolutions.in/results?q=..." --debug
         """
     )
